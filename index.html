@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkHub - QR코드 & URL단축 올인원 포털</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 마우스 반응형 인터랙티브 그라데이션 배경 -->
+  <div class="interactive-bg" id="interactiveBg" aria-hidden="true">
+    <div class="gradient-mesh"></div>
+    <div class="glow-orb orb-primary" id="orbPrimary"></div>
+    <div class="glow-orb orb-secondary" id="orbSecondary"></div>
+    <div class="glow-orb orb-tertiary" id="orbTertiary"></div>
+  </div>
+
+  <!-- 상단 네비게이션 헤더 -->
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link" title="홈으로">
+        <img src="url2qr/img/logo.png" alt="LinkHub Logo" class="logo-img">
+        <span class="logo-title">LinkHub</span>
+      </a>
+    </div>
+
+    <!-- 1 & 2 요구사항: 'QR코드' 버튼과 'URL단축' 버튼 -->
+    <nav class="nav-menu" aria-label="메인 메뉴">
+      <!-- 2 요구사항: 'QR코드' 버튼 클릭 시 [url2qr]폴더 index.html와 연결 -->
+      <a href="url2qr/index.html" class="nav-btn nav-qr-btn" id="btnNavQr" title="QR코드 생성기로 이동">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>QR코드</span>
+      </a>
+
+      <!-- 3 요구사항: 'URL단축' 버튼 클릭 시 [urlShort]폴더 index.html와 연결 -->
+      <a href="urlShort/index.html" class="nav-btn nav-short-btn" id="btnNavShort" title="URL 단축기로 이동">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+        <span>URL단축</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- 메인 허브 스테이지 -->
+  <main class="main-stage">
+    <div class="hero-container">
+      <!-- 메인 뱃지 및 타이틀 -->
+      <div class="badge-pill">
+        <span class="badge-dot"></span>
+        <span>스마트 링크 & QR코드 올인원 서비스</span>
+      </div>
+
+      <h1 class="hero-title">
+        더 편리하고 스마트한<br>
+        <span class="gradient-text">웹 링크 & QR코드 솔루션</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        복잡한 웹 주소를 기억하기 쉬운 짧은 단축 URL로 줄이고,<br>
+        선명한 고화질 QR코드로 한 번에 생성하여 편리하게 공유하세요.
+      </p>
+
+      <!-- 1, 2, 3 요구사항: 대형 서비스 선택 카드 그리드 -->
+      <div class="cards-grid">
+
+        <!-- 카드 1: QR코드 생성기 (url2qr 폴더 연결) -->
+        <article class="service-card qr-card" id="cardQr">
+          <div class="card-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+              <circle cx="6.5" cy="6.5" r="1.5" fill="currentColor"></circle>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"></circle>
+              <circle cx="6.5" cy="17.5" r="1.5" fill="currentColor"></circle>
+              <line x1="14" y1="14" x2="14" y2="17"></line>
+              <line x1="17" y1="14" x2="20" y2="14"></line>
+            </svg>
+          </div>
+
+          <div class="card-content">
+            <div class="card-tag">QR Code Generator</div>
+            <h2 class="card-heading">QR코드</h2>
+            <p class="card-description">
+              웹사이트 주소나 텍스트를 고해상도 QR코드로 즉시 렌더링하고, 클릭 한 번으로 고화질 JPG 이미지로 다운로드할 수 있습니다.
+            </p>
+            
+            <ul class="card-feature-list">
+              <li>✓ 고해상도 800×800 JPG 원클릭 다운로드</li>
+              <li>✓ 한글, 특수문자, 긴 URL 무결점 지원</li>
+              <li>✓ 마우스 반응형 감각적 글래스모피즘 UI</li>
+            </ul>
+          </div>
+
+          <!-- 2 요구사항: [url2qr]폴더 index.html와 연결 -->
+          <a href="url2qr/index.html" class="card-action-btn btn-go-qr" id="btnCardQr">
+            <span>QR코드 바로가기</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </article>
+
+        <!-- 카드 2: URL 단축기 (urlShort 폴더 연결) -->
+        <article class="service-card short-card" id="cardShort">
+          <div class="card-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              <circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity="0.3"></circle>
+            </svg>
+          </div>
+
+          <div class="card-content">
+            <div class="card-tag">URL Shortener</div>
+            <h2 class="card-heading">URL단축</h2>
+            <p class="card-description">
+              길고 복잡한 인터넷 주소를 OpenAPI 기반으로 간결한 짧은 URL로 즉시 압축하고, 원클릭으로 손쉽게 클립보드에 복사하세요.
+            </p>
+
+            <ul class="card-feature-list">
+              <li>✓ 최신 OpenAPI 기반 실시간 URL 단축</li>
+              <li>✓ 원클릭 클립보드 자동 복사 & 알림창</li>
+              <li>✓ 단축 URL을 바로 QR코드로 생성 연계</li>
+            </ul>
+          </div>
+
+          <!-- 3 요구사항: [urlShort]폴더 index.html와 연결 -->
+          <a href="urlShort/index.html" class="card-action-btn btn-go-short" id="btnCardShort">
+            <span>URL단축 바로가기</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- 하단 정보 배너 -->
+      <footer class="footer-info">
+        <p>프로젝트 06 &bull; 통합 스마트 링크 & QR코드 웹 애플리케이션</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+/* ============================================================
+   LinkHub - QR코드 & URL단축 포털 메인 스타일시트
+   Bright & Warm Ambient Interactive Glassmorphism Theme
+   ============================================================ */
+
+:root {
+  --primary-gold: #FFC000;
+  --primary-amber: #FFB300;
+  --primary-hover: #FFA200;
+  --primary-gradient: linear-gradient(135deg, #FFC72C 0%, #FFB000 100%);
+  --primary-gradient-hover: linear-gradient(135deg, #FFD147 0%, #FFA000 100%);
+
+  --text-dark: #1E293B;
+  --text-muted: #57534E;
+  --text-light: #A8A29E;
+
+  --mouse-px-x: 50vw;
+  --mouse-px-y: 50vh;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --mouse-ratio-x: 0.5;
+  --mouse-ratio-y: 0.5;
+
+  --grad-base-1: #FFFDF7;
+  --grad-base-2: #FFF8E7;
+  --grad-base-3: #FFF0C2;
+
+  --orb-1-color: rgba(255, 192, 0, 0.45);
+  --orb-2-color: rgba(255, 160, 50, 0.32);
+  --orb-3-color: rgba(255, 225, 110, 0.38);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-card: 0 20px 50px -10px rgba(255, 180, 0, 0.16), 0 8px 24px -4px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 30px 60px -10px rgba(255, 180, 0, 0.28), 0 12px 30px -4px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  color: var(--text-dark);
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--grad-base-1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------
+   인터랙티브 마우스 반응형 그라데이션 배경
+   ------------------------------------------------------------ */
+.interactive-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--grad-base-1);
+}
+
+.gradient-mesh {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at calc(var(--mouse-x, 50%) * 0.7 + 15%) calc(var(--mouse-y, 50%) * 0.7 + 15%), 
+      var(--grad-base-3, #FFF0C2) 0%, 
+      transparent 65%),
+    linear-gradient(
+      calc(var(--mouse-ratio-x, 0.5) * 50deg + 115deg),
+      var(--grad-base-1, #FFFDF7) 0%,
+      var(--grad-base-2, #FFF8E7) 48%,
+      var(--grad-base-3, #FFF0C2) 100%
+    );
+  opacity: 0.95;
+  transition: background 0.15s ease-out;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  will-change: transform, background;
+  pointer-events: none;
+}
+
+.orb-primary {
+  width: 520px;
+  height: 520px;
+  background: var(--orb-1-color);
+  top: 15%;
+  left: 20%;
+  transform: translate(calc(var(--mouse-px-x, 50vw) * 0.08 - 260px), calc(var(--mouse-px-y, 50vh) * 0.08 - 260px));
+}
+
+.orb-secondary {
+  width: 580px;
+  height: 580px;
+  background: var(--orb-2-color);
+  bottom: 10%;
+  right: 15%;
+  transform: translate(calc(var(--mouse-px-x, 50vw) * -0.06), calc(var(--mouse-px-y, 50vh) * -0.06));
+}
+
+.orb-tertiary {
+  width: 420px;
+  height: 420px;
+  background: var(--orb-3-color);
+  top: 45%;
+  right: 35%;
+  transform: translate(calc(var(--mouse-px-x, 50vw) * 0.04), calc(var(--mouse-px-y, 50vh) * -0.04));
+}
+
+/* ------------------------------------------------------------
+   상단 네비게이션 헤더
+   ------------------------------------------------------------ */
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 6px 16px 6px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 18px rgba(255, 180, 0, 0.12);
+  transition: var(--transition-smooth);
+}
+
+.logo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 180, 0, 0.22);
+}
+
+.logo-img {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #B45309;
+  letter-spacing: -0.5px;
+}
+
+/* 1 & 2 요구사항: 'QR코드' 버튼과 'URL단축' 버튼 */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.nav-qr-btn {
+  background: rgba(255, 192, 0, 0.15);
+  color: #92400E;
+}
+
+.nav-qr-btn:hover {
+  background: var(--primary-gradient);
+  color: #78350F;
+  box-shadow: 0 4px 14px rgba(255, 180, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.nav-short-btn {
+  background: #1E293B;
+  color: #FFFFFF;
+}
+
+.nav-short-btn:hover {
+  background: #0F172A;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------
+   메인 히어로 스테이지
+   ------------------------------------------------------------ */
+.main-stage {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px 60px;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 192, 0, 0.18);
+  border: 1px solid rgba(255, 192, 0, 0.45);
+  color: #B45309;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(255, 192, 0, 0.15);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #F59E0B;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #F59E0B;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1.2px;
+  color: var(--text-dark);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 12px;
+}
+
+/* ------------------------------------------------------------
+   대형 서비스 선택 카드 그리드
+   ------------------------------------------------------------ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 38px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(255, 192, 0, 0.6);
+}
+
+/* 카드 아이콘 */
+.card-icon-wrapper {
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.qr-card .card-icon-wrapper {
+  background: rgba(255, 192, 0, 0.18);
+  color: #B45309;
+}
+
+.short-card .card-icon-wrapper {
+  background: rgba(30, 41, 59, 0.08);
+  color: #1E293B;
+}
+
+.service-card:hover .card-icon-wrapper {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.card-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #D97706;
+  margin-bottom: 6px;
+}
+
+.card-heading {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  min-height: 68px;
+}
+
+.card-feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 30px;
+}
+
+.card-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 카드 내 액션 버튼 */
+.card-action-btn {
+  margin-top: auto;
+  width: 100%;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+/* QR코드 버튼 */
+.btn-go-qr {
+  background: var(--primary-gradient);
+  color: #78350F;
+  box-shadow: 0 8px 20px -3px rgba(255, 180, 0, 0.4);
+}
+
+.btn-go-qr:hover {
+  background: var(--primary-gradient-hover);
+  box-shadow: 0 12px 26px -3px rgba(255, 180, 0, 0.55);
+  transform: translateY(-2px);
+}
+
+/* URL 단축 버튼 */
+.btn-go-short {
+  background: #1E293B;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px -3px rgba(15, 23, 42, 0.35);
+}
+
+.btn-go-short:hover {
+  background: #0F172A;
+  box-shadow: 0 12px 26px -3px rgba(15, 23, 42, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 푸터 정보 */
+.footer-info {
+  margin-top: 36px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* 반응형 모바일 */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card-description {
+    min-height: auto;
+  }
+}
